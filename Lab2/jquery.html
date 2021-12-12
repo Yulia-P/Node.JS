@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+            font-family: Courier New;
+            color: indianred;
+            font-size: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info"></div>
+
+    <script>
+        $(document).ready(() => {
+            const url = "http://localhost:5000/api/name";
+            let params = {
+                "async": true,
+                "crossDomain": true,
+                "url": url,
+                "method": "GET"
+            };
+            $.ajax(params).done(response => {$("#info").text(response);}).then(() => {});
+        });
+    </script>
+</body>
+</html>
