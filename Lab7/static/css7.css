@@ -1,0 +1,30 @@
+body{
+    background-color: #FADBF5;
+}
+header {
+    background: #BF384F;
+}
+
+h1 {
+    color: aliceblue;
+    text-align: center;
+    font-family: "Century Gothic";
+}
+
+label {
+    font-size: 40px;
+    font-family: "Century Gothic";
+    color: #3F7A63;
+}
+
+.text {
+    color: #EF876B;
+    text-decoration: underline;
+    font-family: "Century Gothic";
+    font-size: larger;
+}
+
+.line_block {
+    float: left;
+    margin: 2%;
+}
