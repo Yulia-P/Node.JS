@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewpoint" content="width=device-width"/>
+        <title>factorial</title>
+    </head>
+    <body>
+        <div id='result'></div>
+        <script>
+            result.innerHTML = '';
+            let n = 0;
+            const t = Date.now();
+            for (var k = 0; k < 21; k++) {                
+                fetch(`http://localhost:5000/fact?k=${k}`,{
+                    method:'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response=>{return response.json();})
+                .then((pdata)=>{
+                    result.innerHTML += (n++) + '.Результат: ' + (Date.now() - t) + '-' + pdata.k + '/' + pdata.fact + '<br/>';
+                });
+               
+            }
+
+        </script>
+    </body>
+</html>
