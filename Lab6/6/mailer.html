@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SendMail</title>
+        <style>
+            input {
+                padding: 10px;
+                border-radius: 10px;
+            }
+            body {
+                font-family: Georgia;
+            }
+            button {
+                padding: 10px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <p>
+                <label>From</label>
+                <input id="from" type="email" placeholder="example@mail.com">
+            </p>
+            <p>
+                <label>To</label>
+                <input id="to" type="email" placeholder="example@mail.com">
+            </p>
+            <p>
+                <label>Message</label>
+                <input id="message" type="text">
+            </p>
+            <p>
+                <button onclick="send()">Send</button>
+            </p>
+        </form>
+        <script>
+            function send() {
+            fetch('http://localhost:5000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    from: document.getElementById('from').value,
+                    to: document.getElementById('to').value,
+                    message: document.getElementById('message').value
+                })
+            })
+            .then(()=>{alert('Success!')});
+        }
+        </script>
+    </body>
+</html>
