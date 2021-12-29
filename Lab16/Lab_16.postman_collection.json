@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "5e7c137d-2dd9-497c-bcd2-77251f6a2372",
+		"name": "Lab_16",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 getFaculties(faculty не задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getFaculties ($faculty: String) {\r\n    getFaculties (faculty: $faculty) {\r\n        FACULTY\r\n        FACULTY_NAME\r\n        PULPITS {\r\n            PULPIT\r\n            PULPIT_NAME\r\n            FACULTY {\r\n                FACULTY\r\n                FACULTY_NAME\r\n                PULPITS {\r\n                    PULPIT\r\n                    PULPIT_NAME\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 getFaculties(faculty задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getFaculties ($faculty: String) {\r\n    getFaculties (faculty: $faculty) {\r\n        FACULTY\r\n        FACULTY_NAME\r\n        PULPITS {\r\n            PULPIT\r\n            PULPIT_NAME\r\n            FACULTY {\r\n                FACULTY\r\n                FACULTY_NAME\r\n                PULPITS {\r\n                    PULPIT\r\n                    PULPIT_NAME\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+						"variables": "{\r\n  \"faculty\": \"ИТ\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 setFaculty(если факультет уже существует обновляет, если нет то добавляет)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setFaculty ($faculty: NewFaculty!) {\r\n    setFaculty (faculty: $faculty) {\r\n        FACULTY\r\n        FACULTY_NAME       \r\n    }\r\n}",
+						"variables": "{\r\n  \"faculty\": {\r\n    \"FACULTY\": \"FTEST\",\r\n    \"FACULTY_NAME\": \"TESTFAC\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 delFaculty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation delFaculty ($id: String!) {\r\n    delFaculty (id: $id)\r\n}",
+						"variables": "{\r\n  \"id\": \"FTEST\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 getTeachersByFaculty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTeachersByFaculty ($faculty: String!) {\r\n    getTeachersByFaculty (faculty: $faculty) {\r\n        TEACHER\r\n        TEACHER_NAME        \r\n    }\r\n}",
+						"variables": "{\r\n  \"faculty\": \"ИТ\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 getSubjectsByFaculty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getSubjectsByFaculties ($faculty: String!) {\r\n    getSubjectsByFaculties (faculty: $faculty) {\r\n        SUBJECT\r\n        SUBJECT_NAME        \r\n    }\r\n}",
+						"variables": "{\r\n  \"faculty\": \"ИТ\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 getTeachers(teacher не задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTeachers ($teacher: String) {\r\n    getTeachers (teacher: $teacher) {\r\n        TEACHER\r\n        TEACHER_NAME        \r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8 getTeachers(teacher задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTeachers ($teacher: String) {\r\n    getTeachers (teacher: $teacher) {\r\n        TEACHER\r\n        TEACHER_NAME        \r\n    }\r\n}",
+						"variables": "{\r\n  \"teacher\": \"БРКВЧ\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9 setTeacher(если преподаватель уже существует обновляет, если нет то добавляет)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setTeacher ($teacher: NewTeacher!) {\r\n    setTeacher (teacher: $teacher) {\r\n        TEACHER\r\n        TEACHER_NAME    \r\n    }\r\n}",
+						"variables": "{\r\n  \"teacher\": {\r\n    \"TEACHER\": \"TTEST\",\r\n    \"TEACHER_NAME\": \"TESTTEAC\",\r\n    \"PULPIT\": \"ИСиТ\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 delTeacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation delTeacher ($id: String!) {\r\n    delTeacher (id: $id)\r\n}",
+						"variables": "{\r\n  \"id\": \"TTEST\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11 getPulpits(pulpit не задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getPulpits ($pulpit: String) {\r\n    getPulpits (pulpit: $pulpit) {\r\n        PULPIT\r\n        PULPIT_NAME       \r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12 getPulpits(pulpit задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getPulpits ($pulpit: String) {\r\n    getPulpits (pulpit: $pulpit) {\r\n        PULPIT\r\n        PULPIT_NAME       \r\n    }\r\n}",
+						"variables": "{\r\n  \"pulpit\": \"ИСиТ\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "13 setPulpit(если кафедра  уже существует обновляет, если нет добавляет)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setPulpit ($pulpit: NewPulpit!) {\r\n    setPulpit (pulpit: $pulpit) {\r\n        PULPIT\r\n        PULPIT_NAME\r\n    \r\n    }\r\n}",
+						"variables": "{\r\n  \"pulpit\": {\r\n    \"PULPIT\": \"PTEST\",\r\n    \"PULPIT_NAME\": \"TESTPULP\",\r\n    \"FACULTY\": \"ИТ\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "14 delPulpit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation delPulpit ($id: String!) {\r\n    delPulpit (id: $id)\r\n}",
+						"variables": "{\r\n  \"id\": \"PTEST\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "15 getSubjects(subject не задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getSubjects ($subject: String) {\r\n    getSubjects (subject: $subject) {\r\n        SUBJECT\r\n        SUBJECT_NAME        \r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16 getSubjects(subject задан)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getSubjects ($subject: String) {\r\n    getSubjects (subject: $subject) {\r\n        SUBJECT\r\n        SUBJECT_NAME        \r\n    }\r\n}",
+						"variables": "{\r\n  \"subject\": \"БД\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "17 setSubject(если предмет  уже существует обновляет, если нет добавляет)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation setSubject ($subject: NewSubject!) {\r\n    setSubject (subject: $subject) {\r\n        SUBJECT\r\n        SUBJECT_NAME        \r\n    }\r\n}",
+						"variables": "{\r\n  \"subject\": {\r\n    \"SUBJECT\": \"STEST\",\r\n    \"SUBJECT_NAME\": \"TESTSUBBB\",\r\n    \"PULPIT\": \"ИСиТ\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "18 delSubject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation delSubject ($id: String!) {\r\n    delSubject (id: $id)\r\n}",
+						"variables": "{\r\n  \"id\": \"STEST\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
