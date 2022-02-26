@@ -4,11 +4,12 @@ import { HttpHandler } from './Handler.js';
 import http from 'http';
 
 const sequelize = new Sequelize({
-    database: 'uni',
-    username: 'root',
-    password: 'Zalesse2015!',
+    database: 'XYZ',
+    username: 'SQLSERVER',
+    password: 'admin',
     host: 'localhost',
-    dialect: 'mysql',
+    port: 1433,
+    dialect: 'mssql',
 });
 
 const server = http.createServer();
