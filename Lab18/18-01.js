@@ -34,7 +34,9 @@ function internalORM(sequelize) {
             PULPIT: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
             PULPIT_NAME: {type: Sequelize.STRING, allowNull: false},
             FACULTY: {
-                type: Sequelize.STRING, allowNull: false,
+                type: Sequelize.STRING,
+                allowNull: false,
+                onDelete: 'cascade',
                 references: {model: FACULTY, key: 'FACULTY'}
             }
         },
@@ -45,7 +47,9 @@ function internalORM(sequelize) {
             TEACHER: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
             TEACHER_NAME: {type: Sequelize.STRING, allowNull: false},
             PULPIT: {
-                type: Sequelize.STRING, allowNull: false,
+                type: Sequelize.STRING,
+                allowNull: false,
+                onDelete: 'cascade',
                 references: {model: PULPIT, key: 'PULPIT'}
             }
         },
@@ -56,7 +60,9 @@ function internalORM(sequelize) {
             SUBJECT: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
             SUBJECT_NAME: {type: Sequelize.STRING, allowNull: false},
             PULPIT: {
-                type: Sequelize.STRING, allowNull: false,
+                type: Sequelize.STRING,
+                allowNull: false,
+                onDelete: 'cascade',
                 references: {model: PULPIT, key: 'PULPIT'}
             }
         },
@@ -75,7 +81,9 @@ function internalORM(sequelize) {
             AUDITORIUM_NAME: {type: Sequelize.STRING, allowNull: false},
             AUDITORIUM_CAPACITY: {type: Sequelize.INTEGER, allowNull: false},
             AUDITORIUM_TYPE: {
-                type: Sequelize.STRING, allowNull: false,
+                type: Sequelize.STRING,
+                allowNull: false,
+                onDelete: 'cascade',
                 references: {model: AUDITORIUM_TYPE, key: 'AUDITORIUM_TYPE'}
             }
         },
@@ -100,6 +108,7 @@ ORM = (s) => {
 
 ORM(sequelize);
 
+//ТРАНЗАКЦИЯ
 sequelize.authenticate()
     .then(() => {
         console.log('Соединение с базой данных установлено');
@@ -107,8 +116,7 @@ sequelize.authenticate()
     .then(() => {
         return sequelize.transaction({isolationLevel: Sequelize.Transaction.ISOLATION_LEVELS.READ_UNCOMMITTED})
             .then(t => {
-                return AUDITORIUM.update({AUDITORIUM_CAPACITY: 0}, {
-                    where: {AUDITORIUM: {[Sequelize.Op.ne]: "null"}},
+                return AUDITORIUM.update({AUDITORIUM_CAPACITY: 0}, {where: {AUDITORIUM: {[Sequelize.Op.ne]: "null"}},
                     transaction: t
                 })
                     .then((r) => {
