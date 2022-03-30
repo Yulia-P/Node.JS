@@ -1,0 +1,28 @@
+{{>list}}
+
+<div class="div5 group">
+    <input type="text" name="name" placeholder="name" id="name1" value="{{name}}" onchange="Change()"></input>
+    <input type="text" name="phone_number" placeholder="+375-29-123-45-66" id="phone_number1" value="{{phone_number}}"
+        onchange="Change()"></input>
+</div>
+<div class="div5">
+    <button onclick="ValidPhone({{ id }})" class="button1">
+        Update
+    </button>
+    <button onclick="Delete({{id}})" id="buttonDelete" class="button1">
+        Delete
+    </button>
+    {{#cancel}}{{/cancel}}
+
+</div>
+<script type="text/javascript">
+    function ValidPhone(id) {
+        var re = /^[+][\d]{3}[(][\d]{2}[)][\d]{3}-[\d]{2}-[\d]{2}$/;
+        var myPhone = document.getElementById('phone_number1').value;
+        var valid = re.test(myPhone);
+        if (valid) Update(id);
+        else alert("Phone number is not correct");
+
+
+    }
+</script>
