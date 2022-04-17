@@ -1,0 +1,16 @@
+{
+  "name": "22-02",
+  "version": "0.0.0",
+  "description": "22-02",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "redis": "^4.0.6",
+    "sequelize": "^6.19.0"
+  }
+}
