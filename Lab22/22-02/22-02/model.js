@@ -8,7 +8,7 @@ Users.init(
         username: { type: Sequelize.STRING },
         password: { type: Sequelize.STRING }
     },
-    { sequelize, modelName: 'Users', tableName: 'blacklist', timestamps: false }
+    { sequelize, modelName: 'Users', tableName: 'users', timestamps: false }
 )
 
 module.exports = Users

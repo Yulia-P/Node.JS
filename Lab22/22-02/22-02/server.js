@@ -37,7 +37,7 @@ app.post('/login', async (req, res) => {
         }
     })
     if (candidate) {
-        const accessToken = jwt.sign({ id: candidate.id, username: candidate.username }, accessKey, { expiresIn: 1 * 60 })
+        const accessToken = jwt.sign({ id: candidate.id, username: candidate.username }, accessKey, { expiresIn: 10 * 60 })
         const refreshToken = jwt.sign({ id: candidate.id, username: candidate.username }, refreshKey, { expiresIn: 24 * 60 * 60 })
 
         res.cookie('accessToken', accessToken, {
@@ -60,7 +60,7 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
-    await global.sequelize.query(`insert into blacklist(id, username, password) values (${Date.now() / 1000},'${req.body.username}', '${req.body.password}')`)
+    await global.sequelize.query(`insert into users(id, username, password) values (${Date.now() / 1000},'${req.body.username}', '${req.body.password}')`)
     res.redirect('/login');
 })
 
@@ -78,7 +78,7 @@ app.get('/refresh-token', (req, res) => {
                         id: user.id
                     }
                 });
-                const newAccessToken = jwt.sign({ id: candidate.id, username: candidate.username }, accessKey, { expiresIn: 5 * 60 });
+                const newAccessToken = jwt.sign({ id: candidate.id, username: candidate.username }, accessKey, { expiresIn: 10 * 60 });
                 const newRefreshToken = jwt.sign({ id: candidate.id, username: candidate.username }, refreshKey, { expiresIn: 24 * 60 * 60 });
                 res.cookie('accessToken', newAccessToken, {
                     httpOnly: true,
@@ -113,3 +113,5 @@ sequelize.sync().then(() => {
         console.log('Server is running on 3000')
     })
 })
+
+

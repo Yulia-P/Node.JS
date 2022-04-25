@@ -1,0 +1,3 @@
+C:\Users\37529\Documents\GitHub\Node.JS\Lab22\22-02\22-02\obj\Debug\22-02.njsproj.AssemblyReference.cache
+C:\Users\37529\Documents\GitHub\Node.JS\Lab22\22-02\22-02\obj\Debug\22-02.njsproj.CoreCompileInputs.cache
+C:\Users\37529\Documents\GitHub\Node.JS\Lab22\22-02\22-02\bin\Microsoft.NodejsTools.WebRole.dll
