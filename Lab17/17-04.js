@@ -5,12 +5,14 @@ const client = redis.createClient('//redis-10275.c124.us-central1-1.gce.cloud.re
 
 
 let start = new Date().getTime()
-for(let n = 1; n<=10000; n++) client.hset(n, n, JSON.stringify({id: n, val: `value ${n}`}))
+for(let n = 1; n<=10000; n++) 
+    client.hset(n, n, JSON.stringify({id: n, val: `value ${n}`}))
 let end = new Date().getTime()
 console.log(`Execution time of 10000 hset: ${end-start}ms`)
 
 start = new Date().getTime()
-for(let n = 1; n<=10000; n++) client.hget(n, n)
+for(let n = 1; n<=10000; n++) 
+    client.hget(n, n)
 end = new Date().getTime()
 console.log(`Execution time of 10000 hget: ${end-start}ms`)
 

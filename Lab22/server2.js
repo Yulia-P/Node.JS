@@ -65,15 +65,15 @@ app.post('/login', async (req, res) => {
         jwt.verify(req.cookies.refreshToken, refreshKey,async (err, user) => {
             if (err) console.log(err.message);
             else if(user) {
+                //set
                 redisClient.set(oldRefreshKeyCount, req.cookies.refreshToken, () => console.log('set old refresh token'));
+                //get
                 for(let x=0;x<=oldRefreshKeyCount; x++){
                     redisClient.get(x, function(err, reply){
-                        console.log(reply);
+                        console.log('blacklist: ' + reply);
                     })
-
                 }
-                //redisClient.get(oldRefreshKeyCount, (err, result) => console.log('added old refresh token:', result));
-            
+                //redisClient.get(oldRefreshKeyCount, (err, result) => console.log('added old refresh token:', result));            
                 oldRefreshKeyCount++;
                 
                 const candidate = await Users.findOne({

@@ -1,24 +1,25 @@
-let fs = require('fs');
-let https = require('https');
-let express = require('express');
+const fs = require('fs');
+const https = require('https');
+const express = require('express');
 
-const app = express();
-
-let options = {
+const cert = {
     // Replace private key and cert with the appropriate names of the credentials you use
-    key: fs.readFileSync('LAB.key', 'utf8'),
-    cert: fs.readFileSync('LAB.crt', 'utf8')
+    key: fs.readFileSync('keyPYS.pem', 'utf8'),
+    cert: fs.readFileSync('certPYS.pem', 'utf8')
 };
 
-https.createServer(options, app).listen(3000);
-
-app.use((req, res, next)=>{
-    console.log('hello');
-    next();
-});
+// const cert = {
+//     // Replace private key and cert with the appropriate names of the credentials you use
+//     key: fs.readFileSync('key.pem', 'utf8'),
+//     cert: fs.readFileSync('cert.pem', 'utf8')
+// };
+const app = express();
 
 app.get('/', (request, response) => {
-    console.log('Hello World')
     response.end('<h1>Hello world</h1>')
 });
 
+const httpsServer = https.createServer(cert, app);
+httpsServer.listen(3000, () => {
+    console.log('Listening to https://localhost:3000/');
+});
