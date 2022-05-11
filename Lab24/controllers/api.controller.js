@@ -9,6 +9,8 @@ const ApiController = {
     },
     getUsersList: async (req, res, next) => {
         try {
+            if (req.user.role =='user')
+            throw new Error('you cant get user info')
             let list = await db.models.Users.findAll()
             res.json(list)        
         } catch(err) {

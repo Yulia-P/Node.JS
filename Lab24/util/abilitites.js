@@ -33,10 +33,9 @@ function defineAdminRules({ can }) {
 
 function defineUserRules({ can }, user) {
     can(['read', ['Commits', 'Repos', 'Abilities']])
-    can(['read', 'Users', {id: user.id}])
+    can(['read', {id: user.id}])
     can(['create', ['Repos', 'Commits']])
-    can(['update', ['Repos', 'Commits']])
-    can(['delete', ['Repos', 'Commits']])
+    can(['update', ['Repos', 'Commits']])   
 }
 
 function defineGuestRules({ can }) {

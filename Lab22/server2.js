@@ -60,7 +60,7 @@ app.post('/login', async (req, res) => {
     res.redirect('/login');
  })
 
- app.get('/refresh-token', (req, res) => {
+ app.get('/refresh-tokenblack', (req, res) => {
     if (req.cookies.refreshToken) {
         jwt.verify(req.cookies.refreshToken, refreshKey,async (err, user) => {
             if (err) console.log(err.message);
@@ -112,7 +112,7 @@ sequelize.sync().then( () => {
     app.listen(5000, () => {
         redisClient.on('error', (err) => {console.log('error ' + err)})
         redisClient.on('connect', () => {console.log('redis connect success')})
-        sequelize.authenticate().then(() => console.log('connect to MSSQL - connection success'))
+        sequelize.authenticate().then(() => console.log('connect to MYSQL - connection success'))
         console.log('Server is running on 3000')
     })
 })
