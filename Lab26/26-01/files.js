@@ -4,7 +4,7 @@ const crypto =require('crypto');
 module.exports.cipher = (rs,ws,key)=>
 {
     const alg ='aes-256-cbc';
-    const piv = Buffer.alloc(16,0);
+    const piv = Buffer.alloc(16,0);//создает новый объект буфера указанного размера.
     const pk = key? key:crypto.randomBytes(32);//спользуется для генерации криптографически хорошо построенных искусственных случайных данных и количества байтов
     const ch = crypto.createCipheriv(alg,pk,piv);//используется для создания объекта Cipher с указанным алгоритмом, ключом и вектором инициализации (iv)
     rs.pipe(ch).pipe(ws);

@@ -48,7 +48,7 @@ const req = http.request(options_init,(res)=>
 				{
 					if(res.statusCode!=409)
 					{
-						const file=fs.createWriteStream('./de.txt');
+						const file=fs.createWriteStream('./decipher.txt');
 						var key=Buffer.alloc(32);
 						let clientSecret =clientDH.getSecret(serverContext);
 						clientSecret.copy(key,0,0,32)

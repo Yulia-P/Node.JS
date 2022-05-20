@@ -5,13 +5,13 @@ const {ServerSign,ClientVerify} = require('./module');
 let options_file= {
     host: 'localhost',
     path: '/resource',
-    port: 3000,
+    port: 5000,
     method:'GET'
 }
 let options_signature = {
     host: 'localhost',
     path: '/',
-    port: 3000,
+    port: 5000,
     method:'GET',
     headers: {'content-type':'application/json'}
 }
