@@ -19,7 +19,7 @@ app.get('/', (request, response) => {
     response.end('<h1>Resource</h1>')
 });
 
-const httpsServer = https.createServer(cert, app);
+const httpsServer = https.createServer(certP, app);
 httpsServer.listen(3000, () => {
     console.log('Listening to https://localhost:3000/');
 });
