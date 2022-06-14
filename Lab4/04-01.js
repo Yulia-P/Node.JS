@@ -6,23 +6,23 @@ var data = require('./database');
 var db = new data.DB();
 var ID = 0;
 
-db.on('GET', (req, res) => { //вывод всех строк
+db.on('GET', (req, res) => { 
     res.end(JSON.stringify(db.select()));
 });
-db.on('POST', (req, res) => { //добавление новой строки
+db.on('POST', (req, res) => { 
     req.on('data', data => {
         let r = JSON.parse(data);
         db.insert(r);
         res.end(JSON.stringify(r));
     });
 });
-db.on('PUT', (req, res) => { //изменение существующей
+db.on('PUT', (req, res) => { 
     req.on('data', data => {
         let r = JSON.parse(data);
         res.end(JSON.stringify(db.update(r)));
     });
 });
-db.on('DELETE', (req, res) => { //удаление 
+db.on('DELETE', (req, res) => { 
     res.end(JSON.stringify(db.delete(ID)));
 });
 
